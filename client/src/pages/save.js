@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
-import Card from "../components/Card";
+import Book from "../components/Book";
 
+// import Jumbotron from "../components/Jumbotron";
+import API from "../utils/API";
 
-function Books(props) {
+function Detail(props) {
   const [books, setBook] = useState({})
 
   useEffect(() => {
@@ -13,36 +14,54 @@ function Books(props) {
       .catch(err => console.log(err));
   }, [])
 
-
-    return (
-      <div>
-      <Container fluid>
+  return (
+    <div >
+      <Container >
         <Row>
-          <Col size="md-6 sm-12">
-          <h1>Saved Books</h1>
+          <Col size="md-12">
+
             {books.length ? (
               <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {books.map(book => (
-                    <Card key={book._id} type="delete"
+
+
+                  <Book key={book._id} type="delete"
                     id={book._id}
+                    thumbnail={book.image}
+                    href={book.link}
                     title={book.title}
                     authors={book.authors}
                     description={book.description}
-                    image={book.image}
-                    link={book.link}
-                    >
-                    </Card>
-                  ))}
-                  </div>
+                  //  onClick={handleSaveBook(book)}
+                  >
+
+
+
+
+
+                  </Book>
+
+                ))}
+              </div>
+
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3 >No books saved</h3>
+              )}
+
+
+
+
           </Col>
         </Row>
+
+
+
+
+
       </Container>
-      </div>
-    );
-  }
+    </div>
+  );
+}
 
 
-export default Books;
+export default Detail;

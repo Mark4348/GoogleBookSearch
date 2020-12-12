@@ -1,28 +1,26 @@
-import React from "react";
-import Search from "./pages/Search";
-import Save from "./pages/Save";
-import Nav from "./components/Navbar";
-import {Route, BrowserRouter as Router} from "react-router-dom";
+import React from "react"
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Wrapper from "./components/Wrapper"
+import Search from "./pages/Search"
+import Saved from "./pages/Saved"
+import Nav from "./components/Nav"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function App(){
+    return(
+        <Router>
+            <div >
+              <Nav />
+              <Wrapper>
+              <Route exact path="/" component={Search} />
+              <Route exact path="/books" component={Search} />
+              <Route exact path="/savedbooks" component={Saved} />
+
+
+
+              </Wrapper>
+            </div>
+        </Router>
+    )
 }
-
-export default App;
+export default App
